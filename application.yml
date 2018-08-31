@@ -3,16 +3,6 @@
 # start services on random port by default
 server.port: 0
 
-# embedded database init, supports mysql too trough the 'mysql' spring profile
-petclinic.database: hsqldb
-spring:
-  datasource:
-    schema: classpath*:db/hsqldb/schema.sql
-    data: classpath*:db/hsqldb/data.sql
-  sleuth:
-    sampler:
-      percentage: 1.0
-
 # JPA
 spring.jpa.hibernate.ddl-auto: none
 
@@ -23,14 +13,14 @@ management.security.enabled: false
 # Waiting issue https://github.com/spring-projects/spring-boot/issues/13042
 spring.cloud.refresh.refreshable: false
 
-
 # Logging
 logging.level.org.springframework: INFO
 
-
----
+# embedded database init, supports mysql too trough the 'mysql' spring profile
 spring:
-  profiles: mysql
+  sleuth:
+    sampler:
+      percentage: 1.0
   datasource:
     schema: classpath*:db/mysql/schema.sql
     data: classpath*:db/mysql/data.sql
@@ -38,3 +28,5 @@ spring:
     username: root
     password: petclinic
     initialization-mode: ALWAYS
+
+
